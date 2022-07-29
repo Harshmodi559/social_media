@@ -32,7 +32,7 @@
                 ><u><a href="/">Home</a></u></b
               ></span
             >
-
+          
             {% if user_post_length == 0 %}
             <span style="color: white; font-size: 27px"><b>No Post</b></span>
             {% elif user_post_length == 1 %}
@@ -56,7 +56,7 @@
             <span style="color: white; font-size: 27px"
               ><b>{{user_following}} following</b></span
             >
-
+          
             <input type="hidden" value="{{user.username}}" name="follower" />
             <input type="hidden" value="{{user_object.username}}" name="user" />
 
@@ -142,10 +142,11 @@
       </div>
     </section>
     <!-- top area -->
+    
     <section>
       <div class="bio">{{user_profile.bio}}</div>
     </section>
-
+    {% if request.user.is_authenticated %}
     <section>
       <div class="gap gray-bg">
         <div class="container-fluid">
@@ -192,6 +193,7 @@
         </div>
       </div>
     </section>
+    {% endif %}
 
     <script
       data-cfasync="false"

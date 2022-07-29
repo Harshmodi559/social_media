@@ -9,7 +9,8 @@ urlpatterns = [
     path('settings', views.settings, name='settings'),
     path('upload', views.upload, name='upload'),
     path('follow', views.follow, name='follow'),
-    # path('search', views.search, name='search'),
+    path('search', views.search, name='search'),
     path('profile/<str:id>', views.profile, name='profile'),
+    path('delete-post/<str:id>',views.delete_post,name='delete_post'),
     path('like-post/<str:id>', views.like_post, name='like-post'),
 ]

@@ -13,7 +13,7 @@ class Profile(models.Model):
      bio=models.CharField(max_length=100,blank=True)
      profileimg=models.ImageField(upload_to='profile_image', default='blank-profile-picture.png')
      location=models.CharField(max_length=100,blank=True)
-
+     
      def __str__(self):
           return self.user.username
 
@@ -38,6 +38,8 @@ class FollowersCount(models.Model):
 class LikePost(models.Model):
     post_id = models.CharField(max_length=500)
     username = models.CharField(max_length=100)
+    liked_at=models.DateTimeField(default=datetime.now)
+    owner=models.CharField(max_length=100,default="")
 
     def __str__(self):
         return self.username

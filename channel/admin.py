@@ -20,5 +20,5 @@ admin.site.register(FollowersCount,FollowerAdmin)
 
 # @admin.register(LikePost)
 class LikeAdmin(admin.ModelAdmin):
-    list_display=('post_id','username')
+    list_display=('post_id','owner','username','liked_at')
 admin.site.register(LikePost,LikeAdmin)
