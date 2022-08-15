@@ -298,31 +298,33 @@
                                     <a href="/profile/{{post.user}}"><strong>{{post.user}}</strong></a> {{post.caption}}
                                 </p>
 
+                                
+                                
+                                {% for comment in comments %}
+                                {% if comment.comment_post_id == post.id %}
                                 <div class="border-t pt-4 space-y-4 ">
                                     <div class="flex">
                                         <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                                            <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="" class="absolute h-full rounded-full w-full">
+                                            <img src= "{{comment.profile_image.url}}" alt="profile_image" class="absolute h-full rounded-full w-full">
                                         </div>
                                         <div class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 h-full relative lg:ml-5 ml-2 lg:mr-20   ">
-                                            <p class="leading-6">Y'all like billie eillish? <urna class="i uil-heart"></urna> <i
+                                            <p class="leading-6"><b>{{comment.user}}:</b> &nbsp;{{comment.body}}<urna class="i uil-heart"></urna> <i
                                                     class="uil-grin-tongue-wink"> </i> </p>
                                             <div class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 "></div>
                                         </div>
                                     </div>
-                                    <div class="flex">
-                                        <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                                            <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="" class="absolute h-full rounded-full w-full">
-                                        </div>
-                                        <div class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 h-full relative lg:ml-5 ml-2 lg:mr-20   ">
-                                            <p class="leading-6">She's my favourite <i class="uil-grin-tongue-wink-alt"></i>
-                                            </p>
-                                            <div class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 "></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> 
+                                {% endif %}
+                                {% endfor %}
+                                
+                                
 
                                 <div class="bg-gray-100 bg-gray-100 rounded-full rounded-md relative ">
-                                    <input type="text" placeholder="post a comment" class="bg-transparent max-h-10 shadow-none">
+                                   <form action="{% url 'comments' post.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="text" placeholder="post a comment"  name="comment" class="bg-transparent max-h-10 shadow-none">
+                                    <button type="submit" style="display:none">submit</button>
+                                 </form> 
                                     <div class="absolute bottom-0 flex h-full items-center right-0 right-3 text-xl space-x-2">
                                         <a href="#"> <i class="uil-image"></i></a>
                                         <a href="#"> <i class="uil-video"></i></a>
